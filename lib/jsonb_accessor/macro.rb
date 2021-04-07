@@ -10,8 +10,8 @@ module JsonbAccessor
         end
 
         # Defines virtual attributes for each jsonb field.
-        field_types.each do |name, type|
-          attribute name, *type
+        field_types.each do |name, (type, options)|
+          attribute name, type, **(options || {})
         end
 
         store_key_mapping_method_name = "jsonb_store_key_mapping_for_#{jsonb_attribute}"
